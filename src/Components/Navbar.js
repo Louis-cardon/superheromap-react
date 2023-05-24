@@ -12,7 +12,7 @@ function Navbar() {
 
     return (
         <header>
-            <h3>Logo</h3>
+            <h3>SuperHeroMap</h3>
             <nav ref={navRef}>
                 <a href="/#">Home</a>
                 <a href="/Incident">Incident</a>
