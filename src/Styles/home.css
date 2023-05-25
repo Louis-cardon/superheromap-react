@@ -25,3 +25,26 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
   
+  /* Style for the buttons */
+.hero-button {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #29335C;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Add a hover effect */
+  .hero-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Add some margin between the buttons if they are next to each other */
+  .hero-button + .hero-button {
+    margin-left: 10px;
+  }
+  

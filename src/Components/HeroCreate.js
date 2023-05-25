@@ -36,8 +36,6 @@ function HeroCreate(props) {
     setSelectedOptions(selectedOptions);
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,6 +44,17 @@ function HeroCreate(props) {
       alert('Veuillez sélectionner au moins un incident.');
       return;
     }
+
+    // Vérifier si le nom et le numéro de téléphone sont vides
+    if (name.trim() === '' || phoneNumber.trim() === '') {
+      alert('Veuillez saisir un nom et un numéro de téléphone.');
+      return;
+    }
+
+    if (phoneNumber.trim().length > 12) {
+        alert('Le numéro de téléphone ne doit pas dépasser 12 caractères.');
+        return;
+      }
 
     const heroData = {
       id: parseInt(id),
@@ -96,6 +105,9 @@ function HeroCreate(props) {
       });
   };
 
+  // Vérifier si le nom et le numéro de téléphone sont vides
+  const isSaveDisabled = name.trim() === '' || phoneNumber.trim() === '';
+
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -123,7 +135,7 @@ function HeroCreate(props) {
                 <div className="col-lg-12">
                   <div className="form-group">
                     <label>Phone Number</label>
-                    <input value={phoneNumber} onChange={(e) => phoneNumberChange(e.target.value)} className="form-control" />
+                    <input value={phoneNumber} onChange={(e) => phoneNumberChange(e.target.value)} className="form-control" maxLength={12}/>
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -160,7 +172,7 @@ function HeroCreate(props) {
                   </div>            
                 <div className="col-lg-12 text-center">
                   <div className="form-group">
-                    <button className="btn btn-success m-1" type="submit">
+                    <button className="btn btn-success m-1" type="submit" disabled={isSaveDisabled}>
                       Save
                     </button>
                     <Link to="/Hero" className="btn btn-danger m-1" type="submit">
