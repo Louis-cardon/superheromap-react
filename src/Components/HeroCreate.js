@@ -33,7 +33,9 @@ function HeroCreate(props) {
   }));
 
   const handleChange = (selectedOptions) => {
-    setSelectedOptions(selectedOptions);
+    if (selectedOptions.length <= 3) {
+      setSelectedOptions(selectedOptions);
+    }
   };
 
   const handleSubmit = (e) => {
