@@ -51,6 +51,7 @@ function HeroListing(props) {
                                 <td>ID</td>
                                 <td>Name</td>
                                 <td>Phone Number</td>
+                                <td>Incident Resources</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,12 @@ function HeroListing(props) {
                                         <td>{item.id}</td>
                                         <td>{item.name}</td>
                                         <td>{item.phoneNumber}</td>
+                                        <td>
+                                            {item.superHeroIncidentResources &&
+                                                item.superHeroIncidentResources.map((resource) => (
+                                                    <div key={resource.id}>{resource.incidentResource.type}</div>
+                                                ))}
+                                        </td>
                                     </tr>
                                 ))}
                         </tbody>

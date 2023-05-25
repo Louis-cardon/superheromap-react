@@ -43,7 +43,7 @@ export default function IncCreate() {
         })
             .then((res) => {
                 alert("Saved successfully.");
-                navigate("/");
+                navigate("/Incident");
             })
             .catch((err) => {
                 console.log(err.message);

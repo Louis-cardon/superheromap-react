@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import IncListing from "./Components/IncListing";
 import IncCreate from "./Components/IncCreate";
 import HeroListing from "./Components/HeroListing";
+import HeroCreate from "./Components/HeroCreate";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Incident" element={<IncListing />} />
         <Route path="/Incident/Create" element={<IncCreate />} />
         <Route path="/Hero" element={<HeroListing />} />
+        <Route path="/Hero/Create" element={<HeroCreate />} />
       </Routes>
     </div>
   );
