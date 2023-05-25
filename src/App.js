@@ -6,6 +6,7 @@ import IncListing from "./Components/IncListing";
 import IncCreate from "./Components/IncCreate";
 import HeroListing from "./Components/HeroListing";
 import HeroCreate from "./Components/HeroCreate";
+import Home from "./Components/Home";
 import "./App.css";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/"/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/Incident" element={<IncListing />} />
         <Route path="/Incident/Create" element={<IncCreate />} />
         <Route path="/Hero" element={<HeroListing />} />
