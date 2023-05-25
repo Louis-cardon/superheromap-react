@@ -84,4 +84,15 @@ header .nav-btn {
         font-size: 1.5rem;
     }
 
+    .divbtn{
+        float: left;
+    }
+
+    .formbtninc{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
 }

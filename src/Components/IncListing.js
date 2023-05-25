@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Link } from 'react-router-dom';
+import "../Styles/main.css"
 
 function IncListing(props) {
   const [incdata, incdatachange] = useState(null);
@@ -40,6 +42,9 @@ function IncListing(props) {
           <h2>Incident Listing</h2>
         </div>
         <div className='card-body m-3'>
+          <div className='divbtn'>
+            <Link to="Create" className='btn btn-success'>Add New (+)</Link>
+          </div>
           <table className='table table-bordered'>
             <thead className='bg-dark text-white'>
               <tr>
