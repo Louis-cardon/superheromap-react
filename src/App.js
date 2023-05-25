@@ -4,6 +4,7 @@ import { GoogleApiWrapper } from "google-maps-react";
 import Navbar from "./Components/Navbar";
 import IncListing from "./Components/IncListing";
 import IncCreate from "./Components/IncCreate";
+import HeroListing from "./Components/HeroListing";
 import "./App.css";
 
 function App() {
@@ -11,9 +12,10 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navbar />} />
+        <Route path="/"/>
         <Route path="/Incident" element={<IncListing />} />
         <Route path="/Incident/Create" element={<IncCreate />} />
+        <Route path="/Hero" element={<HeroListing />} />
       </Routes>
     </div>
   );

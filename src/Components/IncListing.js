@@ -20,33 +20,33 @@ function IncListing(props) {
 
   return (
     <div className='container mt-5'>
-    <div className='map-container'>
-      <Map
-        google={props.google}
-        zoom={5}
-        initialCenter={{ lat: 48.8566, lng: 2.3522 }}
-        style={{ width: '100%', height: '100%' }}
-        containerStyle={{ position: 'relative', width: '100%', height: '400px' }}
-      >
-        {incdata &&
-          incdata.map((incident) => (
-            <Marker
-              key={incident.id}
-              position={{ lat: incident.latitude, lng: incident.longitude }}
-            />
-          ))}
-      </Map>
-    </div>
       <div className='card'>
         <div className='card-title m-3'>
           <h2>Incident Listing</h2>
         </div>
+        <div className='map-container'>
+          <Map
+            google={props.google}
+            zoom={5}
+            initialCenter={{ lat: 48.8566, lng: 2.3522 }}
+            style={{ width: '100%', height: '100%' }}
+            containerStyle={{ position: 'relative', width: '100%', height: '400px' }}
+          >
+            {incdata &&
+              incdata.map((incident) => (
+                <Marker
+                  key={incident.id}
+                  position={{ lat: incident.latitude, lng: incident.longitude }}
+                />
+              ))}
+          </Map>
+        </div>
         <div className='card-body m-3'>
           <div className='divbtn'>
-            <Link to="Create" className='btn btn-success'>Add New (+)</Link>
+            <Link to="Create" className='btn btn-success my-1'>Add New (+)</Link>
           </div>
           <table className='table table-bordered'>
-            <thead className='bg-dark text-white'>
+            <thead className='bg-bluenav text-white'>
               <tr>
                 <td>ID</td>
                 <td>City Name</td>

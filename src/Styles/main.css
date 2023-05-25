@@ -49,6 +49,10 @@ header .nav-btn {
         opacity: 1;
     }
 
+    .bg-bluenav{
+        background-color: var(--mainColor);
+    }
+
     header nav{
         position: fixed;
         top: 0;

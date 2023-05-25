@@ -16,7 +16,7 @@ function Navbar() {
             <nav ref={navRef}>
                 <a href="/#">Home</a>
                 <a href="/Incident">Incident</a>
-                <a href="/#">Blog</a>
+                <a href="/Hero">Hero</a>
                 <a href="/#">About Me</a>
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes/>
