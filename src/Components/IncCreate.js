@@ -92,9 +92,11 @@ function IncCreate(props) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(incData),
         })
+            .then((res) => res.json())
             .then((res) => {
+                console.log(res)
                 alert("Saved successfully.");
-                navigate("/Incident");
+                navigate("/Incident/"+ res.id);
             })
             .catch((err) => {
                 console.log(err.message);
