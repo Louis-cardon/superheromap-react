@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
-import { Link } from 'react-router-dom';
+import { Map, Marker,InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Link, useNavigate } from 'react-router-dom';
 import "../Styles/main.css"
 
 function IncListing(props) {
   const [incdata, incdatachange] = useState(null);
+
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
+  const onMarkerClick = (props, marker) => {
+    setSelectedMarker(marker);
+    console.log('data base', marker.incidentData); // Affiche les données JSON dans la console
+    console.log("test incident")
+    if (selectedMarker) console.log('selected marker', selectedMarker.incidentData.incidentResource);// Affiche les données JSON dans la console
+
+  };
+ 
+  const onCloseInfoWindow = () => {
+    setSelectedMarker(null);
+  };
 
   useEffect(() => {
     fetch("https://localhost:7224/api/Incidents")
@@ -25,21 +39,38 @@ function IncListing(props) {
           <h2>Incident Listing</h2>
         </div>
         <div className='map-container'>
-          <Map
-            google={props.google}
-            zoom={5}
-            initialCenter={{ lat: 48.8566, lng: 2.3522 }}
-            style={{ width: '100%', height: '100%' }}
-            containerStyle={{ position: 'relative', width: '100%', height: '400px' }}
+        <Map
+        google={props.google}
+        zoom={5}
+        initialCenter={{ lat: 48.8566, lng: 2.3522 }}
+        style={{ width: '100%', height: '100%' }}
+        containerStyle={{ position: 'relative', width: '100%', height: '400px' }}
+      >
+        {incdata &&
+          incdata.map((incident) => (
+            <Marker
+              key={incident.id}
+              position={{ lat: incident.latitude, lng: incident.longitude }}
+              incidentData={incident}
+              onClick={onMarkerClick}
+            />
+          ))}
+
+{selectedMarker && (
+          <InfoWindow
+            marker={selectedMarker}
+            visible={true}
+            onClose={onCloseInfoWindow}
           >
-            {incdata &&
-              incdata.map((incident) => (
-                <Marker
-                  key={incident.id}
-                  position={{ lat: incident.latitude, lng: incident.longitude }}
-                />
-              ))}
-          </Map>
+            <div>
+              <h3>{selectedMarker.incidentData.cityName}</h3>
+              {<p>Type d'incident : {selectedMarker.incidentData.incidentResource && selectedMarker.incidentData.incidentResource.type}</p>}
+              <p>Résolu : {selectedMarker.incidentData.isResolved ? 'Oui' : 'Non'}</p>
+              <a href={'/Incident/'+ selectedMarker.incidentData.id} className="btn btn-primary">View</a>
+            </div>
+          </InfoWindow>
+        )}
+      </Map>
         </div>
         <div className='card-body m-3'>
           <div className='divbtn'>

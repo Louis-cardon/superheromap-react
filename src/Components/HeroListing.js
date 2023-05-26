@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import { Link } from 'react-router-dom';
 import "../Styles/main.css"
 
 function HeroListing(props) {
-    const [herodata, herodatachange] = useState(null);
+    const [herodata, setHerodata] = useState(null);
+
+    const [selectedMarker, setSelectedMarker] = useState(null);
+
+    const onMarkerClick = (props, marker) => {
+      setSelectedMarker(marker);
+      console.log('data base', marker.heroData.Data); // Affiche les données JSON dans la console
+      console.log("test incident")
+      if (selectedMarker) console.log('selected marker', selectedMarker.heroData);// Affiche les données JSON dans la console
+  
+    };
+   
+    const onCloseInfoWindow = () => {
+      setSelectedMarker(null);
+    };
 
     useEffect(() => {
         fetch("https://localhost:7224/api/SuperHeroes")
             .then((res) => res.json())
             .then((resp) => {
                 console.log(resp);
-                herodatachange(resp);
+                setHerodata(resp);
             })
             .catch((err) => {
                 console.log(err.message);
@@ -30,15 +44,43 @@ function HeroListing(props) {
                         zoom={5}
                         initialCenter={{ lat: 48.8566, lng: 2.3522 }}
                         style={{ width: '100%', height: '100%' }}
-                        containerStyle={{ position: 'relative', width: '100%', height: '400px' }}
+                        containerStyle={{ position: 'relative', width: '100%', height: '400px' }}                        
                     >
                         {herodata &&
-                            herodata.map((heroident) => (
+                            herodata.map((hero) => (
                                 <Marker
-                                    key={heroident.id}
-                                    position={{ lat: heroident.latitude, lng: heroident.longitude }}
+                                    key={hero.id}
+                                    position={{ lat: hero.latitude, lng: hero.longitude }}
+                                    heroData={hero}
+                                    onClick={onMarkerClick}
                                 />
                             ))}
+                        {selectedMarker && (
+                            <InfoWindow
+                            marker={selectedMarker}
+                            visible={true}
+                            onClose={onCloseInfoWindow}
+                          >
+                                <div>
+              <h3>{selectedMarker.heroData.name}</h3>
+              <p>Numéro de téléphone : {selectedMarker.heroData.phoneNumber}</p>
+              <h4>Ressources associées :</h4>
+              <ul>
+                {selectedMarker.heroData.superHeroIncidentResources.map((resource) => (
+                  <li key={resource.id}>{resource.incidentResource.type}</li>
+                ))}
+              </ul>
+              <h4>Incidents associés :</h4>
+              <ul>
+                {selectedMarker.heroData.superHeroIncidents.map((incident) => (
+                  <li key={incident.id}>
+                  {incident.incident.incidentResource.type} - Résolu : {incident.incident.isResolved ? 'Oui' : 'Non'}
+                </li>
+                ))}
+              </ul>
+            </div>
+                            </InfoWindow>
+                        )}
                     </Map>
                 </div>
                 <div className='card-body m-3'>
