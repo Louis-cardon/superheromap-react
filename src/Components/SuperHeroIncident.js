@@ -71,7 +71,7 @@ function SuperHeroIncident(props) {
         <div className='container mt-5'>
             <div className='card'>
                 <div className='card-title m-3'>
-                    <h2>Hero Listing</h2>
+                    <h2>Incident Hero Listing</h2>
                 </div>
                 <div className='map-container'>
                     {incident && (

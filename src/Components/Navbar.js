@@ -1,29 +1,31 @@
 import { useRef } from "react";
-import {FaBars,FaTimes} from "react-icons/fa"
+import { FaBars, FaTimes } from "react-icons/fa"
+import { Link } from 'react-router-dom';
 import "../Styles/main.css"
 
 function Navbar() {
     const navRef = useRef();
 
-    const showNavbar = () =>{
+    const showNavbar = () => {
         navRef.current.classList.toggle("responsive_nav");
     }
 
 
     return (
         <header>
-            <h3>SuperHeroMap</h3>
+            <h3>
+                <Link to="/" className="title-link">SuperHeroMap</Link>
+            </h3>
             <nav ref={navRef}>
                 <a href="/#">Home</a>
                 <a href="/Incident">Incident</a>
                 <a href="/Hero">Hero</a>
-                <a href="/#">About Me</a>
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
-                    <FaTimes/>
+                    <FaTimes />
                 </button>
             </nav>
             <button onClick={showNavbar} className="nav-btn">
-                <FaBars/>   
+                <FaBars />
             </button>
         </header>
     );

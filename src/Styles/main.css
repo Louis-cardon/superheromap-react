@@ -11,6 +11,12 @@
     --textColor: #eee;
 }
 
+.title-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
 header {
     display: flex;
     align-items: center;
@@ -43,15 +49,36 @@ header .nav-btn {
     font-size: 1.8rem;
 }
 
+
+.bg-bluenav{
+    background-color: var(--mainColor);
+}
+
+.card-title {
+    text-align: center; /* Centre le texte du titre */
+  }
+
+nav a {
+    font-size: 1.5rem;
+}
+
+.divbtn{
+    float: left;
+}
+
+.formbtninc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 1024px){
     header .nav-btn {
         visibility: visible;
         opacity: 1;
     }
 
-    .bg-bluenav{
-        background-color: var(--mainColor);
-    }
 
     header nav{
         position: fixed;
@@ -78,25 +105,6 @@ header .nav-btn {
         position: absolute;
         top: 2rem;
         right: 2rem;
-    }
-
-    .card-title {
-        text-align: center; /* Centre le texte du titre */
-      }
-
-    nav a {
-        font-size: 1.5rem;
-    }
-
-    .divbtn{
-        float: left;
-    }
-
-    .formbtninc{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
 
 }
